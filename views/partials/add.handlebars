@@ -1,21 +1,54 @@
-<form>
-    <p for="addText">Enter name of new Recipe: </p>
-    <input type="text" id="addText"/>
+<form class="bg-success py-5 px-5 d-flex justify-content-center flex-column mh-60">
+    <div class="d-flex mb-5 container">
+        <div class="d-flex flex-column col-6 h-20" style="height: 50%;">
+            <input 
+                type="text" 
+                placeholder="Enter name of new Recipe" 
+                id="addText" 
+                class="col mb-3"
+            />
 
-    <p>Description: </p>
-    <input type="text" />
+            <textarea placeholder="Description of dish..." class="col h-auto"></textarea>
+        </div>
 
-    <p for="addIng">Enter Ingredients: </p>
-    <input type="text" id="addIng" />
-    <input type="button" value="Add"/>
+        <div class="col-6">
+            <div class="d-flex mb-2 container">
+                <input 
+                    type="text" 
+                    placeholder="Enter Ingredients" 
+                    id="addIng" 
+                    class="col"
+                />
+                <input type="button" value="Add" class="px-5"/>
+            </div>
+            
+            {{> ings}}
+        </div>
+    </div>
+    
+    <div class="col d-flex mb-3">
+        <div class="col-6">
+            <div class="d-flex container mb-2">
+                <input type="text" placeholder="Macros" class="col"/>
+                <input type="button" value="Add" class="px-5"/>
+            </div>
 
-    {{> ings}}
+            {{> macros}}
+        </div>
+        
+        <div class="col-6">
+            <div class="d-flex container mb-2">
+                <input type="text" placeholder="Cooking steps" class="col"/>
+                <input type="button" value="Add" class="px-5"/>
+            </div>
 
-    <p>Macros: </p>
-    <input type="text" />
-    <input type="button" value="Add"/>
+            {{> steps }}
+        </div>
+        
+    </div>
 
-    <p>Cooking steps: </p>
-    <input type="text" />
-    <input type="button" value="Add" />
+    
+
+    <input type="button" value="submit" class="col-6 m-auto p-4"/>
+    
 </form>
