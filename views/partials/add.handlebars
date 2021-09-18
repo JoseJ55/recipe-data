@@ -1,7 +1,21 @@
-<p for="addText">Enter name of new Recipe: </p>
-<input type="text" id="addText"/>
+<form>
+    <p for="addText">Enter name of new Recipe: </p>
+    <input type="text" id="addText"/>
 
-<p for="addIng">Enter Ingredients: </p>
-<input type="text" id="addIng" />
+    <p>Description: </p>
+    <input type="text" />
 
-{{> ings}}
+    <p for="addIng">Enter Ingredients: </p>
+    <input type="text" id="addIng" />
+    <input type="button" value="Add"/>
+
+    {{> ings}}
+
+    <p>Macros: </p>
+    <input type="text" />
+    <input type="button" value="Add"/>
+
+    <p>Cooking steps: </p>
+    <input type="text" />
+    <input type="button" value="Add" />
+</form>
