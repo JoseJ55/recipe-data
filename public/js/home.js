@@ -10,6 +10,12 @@ const addIng = document.querySelector("#addIng");
 const addButton = document.querySelector("#addBtn");
 const ingList = document.querySelector("#ingList");
 
+//macros section
+const macros = [];
+const macrosText = document.querySelector("#macrosText");
+const macrosBtn = document.querySelector("#macrosBtn");
+const macrosSection = document.querySelector("#macrosSection");
+
 // Add section of home page.
 const changeAdd = () => {
     searchSection.classList.add("d-none");
@@ -46,7 +52,25 @@ const addIngredient = () => {
     console.log(ing)
 }
 
+//add section of the macros section
+const addMacros = () => {
+    if(macros.includes(macrosText.value)){
+        console.log("Item already added.");
+    } else {
+        macros.push(macrosText.value);
+
+        const newMacros = document.createElement("li");
+        newMacros.classList = "bg-light col-9 my-2 text-center h2 lead p-2";
+        newMacros.textContent = macrosText.value;
+        macrosSection.appendChild(newMacros)
+    }
+    console.log(macros);
+    macrosText.value = "";
+}
+
 addBtn.addEventListener("click", changeAdd)
 searchBtn.addEventListener("click", changeSearch)
 
 addButton.addEventListener("click", addIngredient)
+
+macrosBtn.addEventListener("click", addMacros)

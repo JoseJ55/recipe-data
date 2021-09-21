@@ -26,11 +26,12 @@
         </div>
     </div>
     
+    {{!-- maybe change macros to get nutrient and amount --}}
     <div class="col d-flex mb-3">
         <div class="col-6">
             <div class="d-flex container mb-2">
-                <input type="text" placeholder="Macros" class="col"/>
-                <input type="button" value="Add" class="px-5"/>
+                <input id="macrosText" type="text" placeholder="Macros" class="col"/>
+                <input id="macrosBtn" type="button" value="Add" class="px-5"/>
             </div>
 
             {{> macros}}
