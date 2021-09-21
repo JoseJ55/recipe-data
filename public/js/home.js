@@ -8,6 +8,7 @@ const searchSection = document.querySelector("#searchSection");
 const ing = [];
 const addIng = document.querySelector("#addIng");
 const addButton = document.querySelector("#addBtn");
+const ingList = document.querySelector("#ingList");
 
 // Add section of home page.
 const changeAdd = () => {
@@ -29,10 +30,17 @@ const changeSearch = () => {
 // for adding ingrediantes on the add section.
 const addIngredient = () => {
     // console.log(addIng.value)
+    
+
     if (ing.includes(addIng.value)){
         console.log("Item already added.")
     } else {
         ing.push(addIng.value)
+
+        const newIng = document.createElement("li");
+        newIng.classList = "bg-light col-9 my-2 text-center h2 lead p-2";
+        newIng.textContent = addIng.value;
+        ingList.appendChild(newIng);
     }
     addIng.value = ""
     console.log(ing)
