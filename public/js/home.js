@@ -16,6 +16,12 @@ const macrosText = document.querySelector("#macrosText");
 const macrosBtn = document.querySelector("#macrosBtn");
 const macrosSection = document.querySelector("#macrosSection");
 
+// Steps section
+const steps = [];
+const stepText = document.querySelector("#stepText");
+const stepBtn = document.querySelector("#stepBtn");
+const stepSection = document.querySelector("#stepSection");
+
 // Add section of home page.
 const changeAdd = () => {
     searchSection.classList.add("d-none");
@@ -68,9 +74,26 @@ const addMacros = () => {
     macrosText.value = "";
 }
 
+// step section for cooking steps
+const addStep = () => {
+    if(steps.includes(stepText.value)){
+        console.log("Step already added.")
+    } else {
+        steps.push(stepText.value);
+
+        const newStep = document.createElement("li");
+        newStep.classList = "bg-light col-9 my-2 text-center h2 lead p-2";
+        newStep.textContent = stepText.value;
+        stepSection.appendChild(newStep)
+    }
+    stepText.value = "";
+}
+
 addBtn.addEventListener("click", changeAdd)
 searchBtn.addEventListener("click", changeSearch)
 
 addButton.addEventListener("click", addIngredient)
 
 macrosBtn.addEventListener("click", addMacros)
+
+stepBtn.addEventListener("click", addStep)
