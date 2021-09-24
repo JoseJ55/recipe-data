@@ -4,6 +4,9 @@ const searchBtn = document.querySelector("#search");
 const addSection = document.querySelector("#addSection");
 const searchSection = document.querySelector("#searchSection");
 
+const nameText = document.querySelector("#nameText");
+const descText = document.querySelector("#descText");
+
 // add section 
 const ing = [];
 const addIng = document.querySelector("#addIng");
@@ -12,6 +15,7 @@ const ingList = document.querySelector("#ingList");
 
 //macros section
 const macros = [];
+const macroSelect = document.querySelector("#macroSelect");
 const macrosText = document.querySelector("#macrosText");
 const macrosBtn = document.querySelector("#macrosBtn");
 const macrosSection = document.querySelector("#macrosSection");
@@ -21,6 +25,8 @@ const steps = [];
 const stepText = document.querySelector("#stepText");
 const stepBtn = document.querySelector("#stepBtn");
 const stepSection = document.querySelector("#stepSection");
+
+const submitBtn = document.querySelector("#submitBtn");
 
 // Add section of home page.
 const changeAdd = () => {
@@ -59,15 +65,15 @@ const addIngredient = () => {
 }
 
 //add section of the macros section
-const addMacros = () => {
-    if(macros.includes(macrosText.value)){
+const addMacros = () => { // change array to {:}
+    if(macros.includes(`${macroSelect.value} - ${macrosText.value}`)){
         console.log("Item already added.");
     } else {
-        macros.push(macrosText.value);
+        macros.push(`${macroSelect.value} - ${macrosText.value}`);
 
         const newMacros = document.createElement("li");
         newMacros.classList = "bg-light col-9 my-2 text-center h2 lead p-2";
-        newMacros.textContent = macrosText.value;
+        newMacros.textContent = `${macroSelect.value} - ${macrosText.value}`;
         macrosSection.appendChild(newMacros)
     }
     console.log(macros);
@@ -89,6 +95,14 @@ const addStep = () => {
     stepText.value = "";
 }
 
+const submitAll = () => {
+    console.log("name: ", nameText.value);
+    console.log("desc:", descText.value);
+    console.log("Ing: ", ing);
+    console.log("macros: ", macros);
+    console.log("steps: ", steps);
+}
+
 addBtn.addEventListener("click", changeAdd)
 searchBtn.addEventListener("click", changeSearch)
 
@@ -97,3 +111,5 @@ addButton.addEventListener("click", addIngredient)
 macrosBtn.addEventListener("click", addMacros)
 
 stepBtn.addEventListener("click", addStep)
+
+submitBtn.addEventListener("click", submitAll)
