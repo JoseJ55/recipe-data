@@ -13,4 +13,4 @@ const squelize = process.env.JAWSDB_URL
         }
     );
 
-    module.exports = squelize;
+module.exports = squelize;

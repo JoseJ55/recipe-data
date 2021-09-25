@@ -9,4 +9,12 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.post('/api', async (req, res) => {
+    try{
+        res.send("working");
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 module.exports = router;

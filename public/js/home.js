@@ -76,7 +76,6 @@ const addMacros = () => { // change array to {:}
         newMacros.textContent = `${macroSelect.value} - ${macrosText.value}`;
         macrosSection.appendChild(newMacros)
     }
-    console.log(macros);
     macrosText.value = "";
 }
 
@@ -101,6 +100,19 @@ const submitAll = () => {
     console.log("Ing: ", ing);
     console.log("macros: ", macros);
     console.log("steps: ", steps);
+    // console.log(window.location.href + "api/")
+    const data = {
+        name: nameText.value,
+        desc: descText.value,
+        
+    }
+
+    fetch(window.location.href + "api/", {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"}
+    }).then((res) => {
+        console.log(res)
+    })
 }
 
 addBtn.addEventListener("click", changeAdd)
