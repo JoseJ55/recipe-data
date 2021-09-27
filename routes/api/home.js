@@ -11,7 +11,9 @@ router.get('/', async (req, res) => {
 
 router.post('/api', async (req, res) => {
     try{
-        res.send("working");
+        const data = req.body
+        console.log(data)
+        res.send(data);
     } catch (err) {
         res.status(500).json(err);
     }

@@ -95,21 +95,25 @@ const addStep = () => {
 }
 
 const submitAll = () => {
-    console.log("name: ", nameText.value);
-    console.log("desc:", descText.value);
-    console.log("Ing: ", ing);
-    console.log("macros: ", macros);
-    console.log("steps: ", steps);
+    // console.log("name: ", nameText.value);
+    // console.log("desc:", descText.value);
+    // console.log("Ing: ", ing);
+    // console.log("macros: ", macros);
+    // console.log("steps: ", steps);
     // console.log(window.location.href + "api/")
     const data = {
         name: nameText.value,
         desc: descText.value,
-        
+        recipeId: 1,
+        ingredient: ing,
+        macro: macros,
+        step: steps,
     }
-
+    // console.log(data)
     fetch(window.location.href + "api/", {
         method: 'POST',
-        headers: {"Content-Type": "application/json"}
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
     }).then((res) => {
         console.log(res)
     })

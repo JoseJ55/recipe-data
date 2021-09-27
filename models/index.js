@@ -3,39 +3,36 @@ const IngredientsModel = require("./Ingredients");
 const MacrosModel = require("./Macros");
 const StepsModel = require("./Steps");
 
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connection");
-
-const Recipe = RecipeModel(sequelize, Sequelize);
-const Ingredients = IngredientsModel(sequelize, Sequelize);
-const Macros = MacrosModel(sequelize, Sequelize);
-const Steps = StepsModel(sequelize, Sequelize);
-
-Recipe.hasMany(Ingredients, {
+RecipeModel.hasMany(IngredientsModel, {
     foreignKey: "recipeId",
     onDelete: "CASCADE",
 })
 
-Recipe.hasMany(Macros, {
+RecipeModel.hasMany(MacrosModel, {
     foreignKey: "recipeId",
     onDelete: "CASCADE",
 })
 
-Recipe.hasMany(Steps, {
+RecipeModel.hasMany(StepsModel, {
     foreignKey: "recipeId",
     onDelete: "CASCADE",
 })
 
-Ingredients.belongsTo(Recipe, {
+IngredientsModel.belongsTo(RecipeModel, {
     foreignKey: "recipeId",
 })
 
-Macros.belongsTo(Recipe, {
+MacrosModel.belongsTo(RecipeModel, {
     foreignKey: "recipeId",
 })
 
-Steps.belongsTo(Recipe, {
+StepsModel.belongsTo(RecipeModel, {
     foreignKey: "recipeId",
 })
 
-module.exports = { Recipe, Ingredients, Macros, Recipe };
+module.exports = { 
+    RecipeModel, 
+    IngredientsModel, 
+    MacrosModel, 
+    RecipeModel
+};
