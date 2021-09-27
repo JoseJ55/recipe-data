@@ -1,38 +1,38 @@
-const RecipeModel = require("./Recipe");
-const IngredientsModel = require("./Ingredients");
-const MacrosModel = require("./Macros");
-const StepsModel = require("./Steps");
+const Recipe = require("./Recipe");
+const Ingredients = require("./Ingredients");
+const Macros = require("./Macros");
+const Steps = require("./Steps");
 
-RecipeModel.hasMany(IngredientsModel, {
+Recipe.hasMany(Ingredients, {
     foreignKey: "recipeId",
     onDelete: "CASCADE",
 })
 
-RecipeModel.hasMany(MacrosModel, {
+Recipe.hasMany(Macros, {
     foreignKey: "recipeId",
     onDelete: "CASCADE",
 })
 
-RecipeModel.hasMany(StepsModel, {
+Recipe.hasMany(Steps, {
     foreignKey: "recipeId",
     onDelete: "CASCADE",
 })
 
-IngredientsModel.belongsTo(RecipeModel, {
+Ingredients.belongsTo(Recipe, {
     foreignKey: "recipeId",
 })
 
-MacrosModel.belongsTo(RecipeModel, {
+Macros.belongsTo(Recipe, {
     foreignKey: "recipeId",
 })
 
-StepsModel.belongsTo(RecipeModel, {
+Steps.belongsTo(Recipe, {
     foreignKey: "recipeId",
 })
 
 module.exports = { 
-    RecipeModel, 
-    IngredientsModel, 
-    MacrosModel, 
-    RecipeModel
+    Recipe, 
+    Ingredients, 
+    Macros, 
+    Steps
 };

@@ -94,7 +94,7 @@ const addStep = () => {
     stepText.value = "";
 }
 
-const submitAll = () => {
+const submitAll = async () => {
     // console.log("name: ", nameText.value);
     // console.log("desc:", descText.value);
     // console.log("Ing: ", ing);
@@ -104,19 +104,22 @@ const submitAll = () => {
     const data = {
         name: nameText.value,
         desc: descText.value,
-        recipeId: 1,
         ingredient: ing,
         macro: macros,
         step: steps,
     }
     // console.log(data)
-    fetch(window.location.href + "api/", {
+    const add = await fetch(window.location.href + "api/", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
-    }).then((res) => {
-        console.log(res)
     })
+
+    let msg = await add.json();
+    // .then((res) => {
+    //     console.log(res.body)
+    // })
+    console.log(msg)
 }
 
 addBtn.addEventListener("click", changeAdd)
