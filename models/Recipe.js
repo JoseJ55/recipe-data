@@ -6,10 +6,9 @@ class Recipe extends Model{};
 Recipe.init(
     {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
         },
         name: {
             type: DataTypes.STRING,
