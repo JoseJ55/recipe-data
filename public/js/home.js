@@ -28,6 +28,10 @@ const stepSection = document.querySelector("#stepSection");
 
 const submitBtn = document.querySelector("#submitBtn");
 
+// search part of website
+const searchRecipeBtn = document.querySelector("#searchRecipeBtn");
+const searchRecipeText = document.querySelector("#searchRecipeText");
+
 // Add section of home page.
 const changeAdd = () => {
     searchSection.classList.add("d-none");
@@ -95,12 +99,6 @@ const addStep = () => {
 }
 
 const submitAll = async () => {
-    // console.log("name: ", nameText.value);
-    // console.log("desc:", descText.value);
-    // console.log("Ing: ", ing);
-    // console.log("macros: ", macros);
-    // console.log("steps: ", steps);
-    // console.log(window.location.href + "api/")
     const data = {
         name: nameText.value,
         desc: descText.value,
@@ -108,7 +106,6 @@ const submitAll = async () => {
         macro: macros,
         step: steps,
     }
-    // console.log(data)
     const add = await fetch(window.location.href + "api/", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -116,10 +113,12 @@ const submitAll = async () => {
     })
 
     let msg = await add.json();
-    // .then((res) => {
-    //     console.log(res.body)
-    // })
     console.log(msg)
+}
+
+// searct part of website
+const showData = async () => {
+    console.log(searchRecipeText.value);
 }
 
 addBtn.addEventListener("click", changeAdd)
@@ -132,3 +131,5 @@ macrosBtn.addEventListener("click", addMacros)
 stepBtn.addEventListener("click", addStep)
 
 submitBtn.addEventListener("click", submitAll)
+
+searchRecipeBtn.addEventListener("click", showData);
