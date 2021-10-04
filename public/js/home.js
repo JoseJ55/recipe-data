@@ -31,6 +31,7 @@ const submitBtn = document.querySelector("#submitBtn");
 // search part of website
 const searchRecipeBtn = document.querySelector("#searchRecipeBtn");
 const searchRecipeText = document.querySelector("#searchRecipeText");
+const searchArea = document.querySelector("#searchArea");
 
 // Add section of home page.
 const changeAdd = () => {
@@ -119,6 +120,17 @@ const submitAll = async () => {
 // searct part of website
 const showData = async () => {
     console.log(searchRecipeText.value);
+    const text = searchRecipeText.value.toLowerCase();
+    const data = await fetch(window.location.href + "api/?i=" + text, {
+        method: 'GET',
+        headers: {"Content-type": "application/json"}
+    })
+    .then(async (res) => {
+        const j = await res.json();
+        console.log(j)
+    })
+
+    // console.log(await data.body.data)
 }
 
 addBtn.addEventListener("click", changeAdd)

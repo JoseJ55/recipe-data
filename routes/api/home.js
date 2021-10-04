@@ -11,9 +11,19 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/api', async (req, res) => {
+    try{
+        // console.log("working");
+        console.log(req.query);
+        res.send({data: "working", params: req.query})
+        // res.status(200).json("sucess");
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 router.post('/api', async (req, res) => {
     try{
-        console.log("working")
         let recipeID = uuidv4();
         const { name, desc, ingredient, macro, step } = req.body
 
@@ -27,14 +37,6 @@ router.post('/api', async (req, res) => {
         } 
         else {
             try{
-                console.log(recipeID)
-                console.log(name)
-                console.log(desc)
-                console.log(ingredient)
-                console.log(macro)
-                console.log(step)
-                //check each create since one is not working.
-
                 await Recipe.create({id:recipeID, name:name, desc:desc});
 
                 for(let i=0; i<ingredient.length;i++){
@@ -54,7 +56,6 @@ router.post('/api', async (req, res) => {
                 res.status(500).json({msg: "Error adding data!", error: err})
             }
         }
-        // res.status(200);
     } catch (err) {
         res.status(500).json({error: err});
     }
