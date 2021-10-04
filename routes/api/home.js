@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const {v4: uuidv4} = require("uuid");
 const { Recipe, Ingredients, Macros, Steps } = require("../../models")
+const Sequelize = require("sequelize")
+const Op = Sequelize.Op;
 // add models to require
 
 router.get('/', async (req, res) => {
@@ -13,12 +15,40 @@ router.get('/', async (req, res) => {
 
 router.get('/api', async (req, res) => {
     try{
-        // console.log("working");
-        console.log(req.query);
-        res.send({data: "working", params: req.query})
+        console.log(req.query.i)
+        const checkOne = await Recipe.findOne({raw: true, where: {name: req.query.i}})
+        const checkAll = await Recipe.findAll({raw: true, where: {name: {[Op.like]: "%"+req.query.i+"%"}}})
+        // const checkAll = await Recipe.findAll({raw: true, where: {name: req.query.i}})
+        // console.log(checkOne)
+        // console.log(checkAll)
+
+        if (checkOne != null && checkAll != null){
+            res.send({data: {exact: checkOne, similar: checkAll}, params: req.query})
+        } else {
+            if (checkOne === null) {
+                res.send({data: checkAll, params: req.query})
+            } else if (checkAll === null ){
+                res.send({data: checkOne, params: req.query})
+            } else {
+                res.send({error: "Couldn't find data", params: req.query})
+            }
+        }
+
+        // if (checkOne === null) {
+        //     res.send({error: "not one"})
+        // } 
+        // if(checkAll === null){
+        //     res.send({error: "none"})
+        // }
+        // else {
+        //     // console.log(checkOne)
+        //     res.send({data: checkAll, params: req.query})
+
+        // }
+        // console.log(checkOne)
         // res.status(200).json("sucess");
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).send(err);
     }
 })
 

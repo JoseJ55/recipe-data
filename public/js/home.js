@@ -119,9 +119,10 @@ const submitAll = async () => {
 
 // searct part of website
 const showData = async () => {
-    console.log(searchRecipeText.value);
+    // console.log(searchRecipeText.value);
     const text = searchRecipeText.value.toLowerCase();
-    const data = await fetch(window.location.href + "api/?i=" + text, {
+    // const data = 
+    await fetch(window.location.href + "api/?i=" + text, {
         method: 'GET',
         headers: {"Content-type": "application/json"}
     })
