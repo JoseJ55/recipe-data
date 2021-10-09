@@ -122,13 +122,17 @@ const showData = async () => {
     // console.log(searchRecipeText.value);
     const text = searchRecipeText.value.toLowerCase();
     // const data = 
+    // const data = document.createElement("li");
+    // data.classList = "";
+
     await fetch(window.location.href + "api/?i=" + text, {
         method: 'GET',
         headers: {"Content-type": "application/json"}
     })
     .then(async (res) => {
         const j = await res.json();
-        console.log(j)
+        console.log(j.data)
+        console.log(j.data.exact)
     })
 
     // console.log(await data.body.data)
