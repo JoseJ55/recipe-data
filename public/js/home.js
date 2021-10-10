@@ -32,6 +32,8 @@ const submitBtn = document.querySelector("#submitBtn");
 const searchRecipeBtn = document.querySelector("#searchRecipeBtn");
 const searchRecipeText = document.querySelector("#searchRecipeText");
 const searchArea = document.querySelector("#searchArea");
+// search results
+const searchedArea = document.querySelector("#searchedArea");
 
 // Add section of home page.
 const changeAdd = () => {
@@ -117,25 +119,96 @@ const submitAll = async () => {
     console.log(msg)
 }
 
-// searct part of website
+// search results of website
 const showData = async () => {
-    // console.log(searchRecipeText.value);
     const text = searchRecipeText.value.toLowerCase();
-    // const data = 
-    // const data = document.createElement("li");
-    // data.classList = "";
 
     await fetch(window.location.href + "api/?i=" + text, {
         method: 'GET',
         headers: {"Content-type": "application/json"}
-    })
-    .then(async (res) => {
+    }).then(async (res) => {
         const j = await res.json();
-        console.log(j.data)
-        console.log(j.data.exact)
-    })
+        
+        if(j.data.exact){
+            console.log(j);
+            console.log(j.data);
+            console.log(j.data.exact);
+            console.log(j.data.similar);
 
-    // console.log(await data.body.data)
+            // const mainResults = document.createElement("div");
+            // data.classList = "d-flex col-9 justify-content-center";
+            // searchedArea.appendChild(mainResults);
+
+            // const data = document.createElement("li");
+            // data.classList = "d-flex flex-column col-4 border border-warning mt-4 bg-light";
+            // mainResults.appendChild(data);
+
+            // const title = document.createElement("p");
+            // title.classList = "h2 text-center";
+            // title.textContent = 
+            // data.appendChild(title);
+
+            // ------------- desc ------------------
+            // const descArea = document.createElement("div");
+            // descArea.classList = "col d-flex px-4 my-1";
+            // mainResults.appendChild(descArea);
+
+            // const descTitle = document.createElement("p");
+            // descTitle.classList = "col-3 h3 lead";
+            // descArea.appendChild(descTitle);
+
+            // const descText = document.createElement("p");
+            // descText.classList = "col text-wrap";
+            // descArea.appendChild(descText);
+
+            // ----------Ing ------------------
+            // const ingArea = document.createElement("div");
+            // ingArea.classList = "col d-flex px-4 my-1";
+            // mainResults.appendChild(ingArea);
+
+            // const ingText = document.createElement("p");
+            // ingText.classList = "col-2 h3 lead";
+            // ingArea.appendChild(ingText);
+
+            // const ingList = document.createElement("ul");
+            // ingList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
+            // ingArea.appendChild(ingList);
+
+            // add for loop here for ing data
+
+            // ---------------- macro -------------------
+            // const macroArea = document.createElement("div");
+            // macroArea.classList = "col d-flex px-4 my-1";
+            // mainResults.appendChild(macroArea);
+
+            // const macroTitle = document.createElement("p");
+            // macroTitle.classList = "col-2 h3 lead";
+            // macroArea.appendChild(macroTitle);
+
+            // const macroList = document.createElement("ul");
+            // macroList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
+            // macroArea.appendChild(macroList);
+
+            // add for loop for macro data
+
+            // ---------------steps -------------------
+            // const stepArea = document.createElement("div");
+            // stepArea.classList = "col d-flex px-4 my-1";
+            // mainResults.appendChild(stepArea);
+
+            // const stepTitle = document.createElement("p");
+            // stepTitle.classList = "col-2 h3 lead";
+            // stepArea.appendChild(stepTitle);
+
+            // const steplist = document.createElement("ol");
+            // steplist.classList = "d-flex flex-column col-10";
+            // stepArea.appendChild(steplist);
+
+            // add for loop for step data
+
+            
+        }
+    })
 }
 
 addBtn.addEventListener("click", changeAdd)

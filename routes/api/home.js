@@ -15,9 +15,30 @@ router.get('/', async (req, res) => {
 
 router.get('/api', async (req, res) => {
     try{
-        console.log(req.query.i)
-        const checkOne = await Recipe.findOne({raw: true, where: {name: req.query.i}})
-        const checkAll = await Recipe.findAll({raw: true, where: {name: {[Op.like]: "%"+req.query.i+"%"}}})
+        const checkOne = await Recipe.findOne({
+            raw: true, 
+            where: {
+                name: req.query.i
+            }, 
+            include: [
+                {model: Ingredients},
+                {model: Macros},
+                {model: Steps}
+            ]
+        })
+        const checkAll = await Recipe.findAll({
+            raw: true, 
+            where: {
+                name: {
+                    [Op.like]: "%"+req.query.i+"%"
+                }
+            },
+            include: [
+                {model: Ingredients},
+                {model: Macros},
+                {model: Steps}
+            ]
+        })
         // const checkAll = await Recipe.findAll({raw: true, where: {name: req.query.i}})
         // console.log(checkOne)
         // console.log(checkAll)
