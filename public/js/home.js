@@ -34,6 +34,7 @@ const searchRecipeText = document.querySelector("#searchRecipeText");
 const searchArea = document.querySelector("#searchArea");
 // search results
 const searchedArea = document.querySelector("#searchedArea");
+const searchedAreaMain = document.querySelector("#searchedAreaMain");
 
 // Add section of home page.
 const changeAdd = () => {
@@ -119,6 +120,95 @@ const submitAll = async () => {
     console.log(msg)
 }
 
+// search results function
+const mainResults = (data) => {
+    const main = document.createElement("div");
+    main.classList = "d-flex flex-column col-4 border border-warning mt-4 bg-light";
+    searchedAreaMain.appendChild(main);
+
+    const title = document.createElement("p");
+    title.classList = "h2 text-center";
+    title.textContent = data.name;
+    main.appendChild(title);
+
+    // ------------- desc ------------------
+    const descArea = document.createElement("div");
+    descArea.classList = "col d-flex px-4 my-1";
+    main.appendChild(descArea);
+
+    const descTitle = document.createElement("p");
+    descTitle.classList = "col-6 h3 lead";
+    descTitle.textContent = "Description: "
+    descArea.appendChild(descTitle);
+
+    const descText = document.createElement("p");
+    descText.classList = "col-6 text-wrap";
+    descText.textContent = data.desc;
+    descArea.appendChild(descText);
+
+    // ----------Ing ------------------
+    const ingArea = document.createElement("div");
+    ingArea.classList = "col d-flex px-4 my-1";
+    main.appendChild(ingArea);
+
+    const ingText = document.createElement("p");
+    ingText.classList = "col-2 h3 lead";
+    ingText.textContent = "Ingredients: ";
+    ingArea.appendChild(ingText);
+
+    const ingList = document.createElement("ul");
+    ingList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
+    ingArea.appendChild(ingList);
+
+    for(let i = 0; i < data.ingredients.length; i++){
+        const ing = document.createElement("li");
+        ing.classList = "my-1 text-center";
+        ing.textContent = data.ingredients[i].ingredient;
+        ingList.appendChild(ing);
+    }
+
+    // ---------------- macro -------------------
+    const macroArea = document.createElement("div");
+    macroArea.classList = "col d-flex px-4 my-1";
+    main.appendChild(macroArea);
+
+    const macroTitle = document.createElement("p");
+    macroTitle.classList = "col-2 h3 lead";
+    macroTitle.textContent = "Macros: "
+    macroArea.appendChild(macroTitle);
+
+    const macroList = document.createElement("ul");
+    macroList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
+    macroArea.appendChild(macroList);
+
+    for(let i=0; i<data.macros.length; i++) {
+        const macro = document.createElement("li");
+        macro.classList = "my-1 text-center";
+        macro.textContent = data.macros[i].macro;
+        macroArea.appendChild(macro);
+    }
+
+    // ---------------steps -------------------
+    // const stepArea = document.createElement("div");
+    // stepArea.classList = "col d-flex px-4 my-1";
+    // main.appendChild(stepArea);
+
+    // const stepTitle = document.createElement("p");
+    // stepTitle.classList = "col-2 h3 lead";
+    // stepArea.appendChild(stepTitle);
+
+    // const steplist = document.createElement("ol");
+    // steplist.classList = "d-flex flex-column col-10";
+    // stepArea.appendChild(steplist);
+
+    // for(let i=0; i<data.steps.length; i++) {
+    //     const step = document.createElement("li");
+    //     step.classList = "my-1 text-center";
+    //     step.textContent = data.steps[i].step;
+    //     stepArea.appendChild(step);
+    // }
+}
+
 // search results of website
 const showData = async () => {
     const text = searchRecipeText.value.toLowerCase();
@@ -128,37 +218,41 @@ const showData = async () => {
         headers: {"Content-type": "application/json"}
     }).then(async (res) => {
         const j = await res.json();
-        
+
         if(j.data.exact){
             console.log(j);
             console.log(j.data);
             console.log(j.data.exact);
             console.log(j.data.similar);
-
+            
+            mainResults(j.data.exact)
             // const mainResults = document.createElement("div");
             // data.classList = "d-flex col-9 justify-content-center";
             // searchedArea.appendChild(mainResults);
 
-            // const data = document.createElement("li");
+            // const data = document.createElement("div");
             // data.classList = "d-flex flex-column col-4 border border-warning mt-4 bg-light";
-            // mainResults.appendChild(data);
+            // // mainResults.appendChild(data);
+            // searchedAreaMain.appendChild(data);
 
             // const title = document.createElement("p");
             // title.classList = "h2 text-center";
-            // title.textContent = 
+            // title.textContent = j.data.exact.name;
             // data.appendChild(title);
 
             // ------------- desc ------------------
             // const descArea = document.createElement("div");
             // descArea.classList = "col d-flex px-4 my-1";
-            // mainResults.appendChild(descArea);
+            // data.appendChild(descArea);
 
             // const descTitle = document.createElement("p");
-            // descTitle.classList = "col-3 h3 lead";
+            // descTitle.classList = "col-6 h3 lead";
+            // descTitle.textContent = "Description: "
             // descArea.appendChild(descTitle);
 
             // const descText = document.createElement("p");
-            // descText.classList = "col text-wrap";
+            // descText.classList = "col-6 text-wrap";
+            // descText.textContent = j.data.exact.desc;
             // descArea.appendChild(descText);
 
             // ----------Ing ------------------
