@@ -211,11 +211,7 @@ const mainResults = (data) => {
 }
 
 const simResults = (data) => {
-    console.log(data)
-
     for(let i=0; i < data.length; i++){
-        console.log(data[i])
-    
         const main = document.createElement("li");
         main.classList = "d-flex flex-column col-4 border border-warning mt-4 bg-light";
         searchedArea.appendChild(main);
@@ -226,82 +222,83 @@ const simResults = (data) => {
         main.appendChild(title);
 
         // ------------- desc ------------------
-        // const descArea = document.createElement("div");
-        // descArea.classList = "col d-flex px-4 my-1";
-        // main.appendChild(descArea);
+        const descArea = document.createElement("div");
+        descArea.classList = "col d-flex px-4 my-1";
+        main.appendChild(descArea);
 
-        // const descTitle = document.createElement("p");
-        // descTitle.classList = "col-6 h3 lead";
-        // descTitle.textContent = "Description: "
-        // descArea.appendChild(descTitle);
+        const descTitle = document.createElement("p");
+        descTitle.classList = "col-6 h3 lead";
+        descTitle.textContent = "Description: "
+        descArea.appendChild(descTitle);
 
-        // const descText = document.createElement("p");
-        // descText.classList = "col-6 text-wrap";
-        // descText.textContent = data.desc;
-        // descArea.appendChild(descText);
+        const descText = document.createElement("p");
+        descText.classList = "col-6 text-wrap";
+        descText.textContent = data[i].desc;
+        descArea.appendChild(descText);
 
         // ----------Ing ------------------
-        // const ingArea = document.createElement("div");
-        // ingArea.classList = "col d-flex px-4 my-1";
-        // main.appendChild(ingArea);
+        const ingArea = document.createElement("div");
+        ingArea.classList = "col d-flex px-4 my-1";
+        main.appendChild(ingArea);
 
-        // const ingText = document.createElement("p");
-        // ingText.classList = "col-2 h3 lead";
-        // ingText.textContent = "Ingredients: ";
-        // ingArea.appendChild(ingText);
+        const ingText = document.createElement("p");
+        ingText.classList = "col-2 h3 lead";
+        ingText.textContent = "Ingredients: ";
+        ingArea.appendChild(ingText);
 
-        // const ingList = document.createElement("ul");
-        // ingList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
-        // ingArea.appendChild(ingList);
+        const ingList = document.createElement("ul");
+        ingList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
+        ingArea.appendChild(ingList);
 
-        // for(let i = 0; i < data.ingredients.length; i++){
-        //     const ing = document.createElement("li");
-        //     ing.classList = "my-1 text-center";
-        //     ing.textContent = data.ingredients[i].ingredient;
-        //     ingList.appendChild(ing);
-        // }
+        for(let j = 0; j < data[i].ingredients.length; j++){
+            const ing = document.createElement("li");
+            ing.classList = "my-1 text-center";
+            ing.textContent = data[i].ingredients[j].ingredient;
+            ingList.appendChild(ing);
+        }
 
         // ---------------- macro -------------------
-        // const macroArea = document.createElement("div");
-        // macroArea.classList = "col d-flex px-4 my-1";
-        // main.appendChild(macroArea);
+        const macroArea = document.createElement("div");
+        macroArea.classList = "col d-flex px-4 my-1";
+        main.appendChild(macroArea);
 
-        // const macroTitle = document.createElement("p");
-        // macroTitle.classList = "col-2 h3 lead";
-        // macroTitle.textContent = "Macros: "
-        // macroArea.appendChild(macroTitle);
+        const macroTitle = document.createElement("p");
+        macroTitle.classList = "col-2 h3 lead";
+        macroTitle.textContent = "Macros: "
+        macroArea.appendChild(macroTitle);
 
-        // const macroList = document.createElement("ul");
-        // macroList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
-        // macroArea.appendChild(macroList);
+        const macroList = document.createElement("ul");
+        macroList.classList = "d-flex flex-column align-items-center list-unstyled col-10";
+        macroArea.appendChild(macroList);
 
-        // for(let i=0; i<data.macros.length; i++) {
-        //     const macro = document.createElement("li");
-        //     macro.classList = "my-1 text-center";
-        //     macro.textContent = data.macros[i].macro;
-        //     macroList.appendChild(macro);
-        // }
+        for(let j=0; j<data[i].macros.length; j++) {
+            console.log(data[i].macros.length)
+            const macro = document.createElement("li");
+            macro.classList = "my-1 text-center";
+            macro.textContent = data[i].macros[j].macro;
+            macroList.appendChild(macro);
+        }
 
         // ---------------steps -------------------
-        // const stepArea = document.createElement("div");
-        // stepArea.classList = "col d-flex px-4 my-1";
-        // main.appendChild(stepArea);
+        const stepArea = document.createElement("div");
+        stepArea.classList = "col d-flex px-4 my-1";
+        main.appendChild(stepArea);
 
-        // const stepTitle = document.createElement("p");
-        // stepTitle.classList = "col-2 h3 lead";
-        // stepTitle.textContent = "steps"
-        // stepArea.appendChild(stepTitle);
+        const stepTitle = document.createElement("p");
+        stepTitle.classList = "col-2 h3 lead";
+        stepTitle.textContent = "steps"
+        stepArea.appendChild(stepTitle);
 
-        // const steplist = document.createElement("ol");
-        // steplist.classList = "d-flex flex-column col-10";
-        // stepArea.appendChild(steplist);
+        const steplist = document.createElement("ol");
+        steplist.classList = "d-flex flex-column col-10";
+        stepArea.appendChild(steplist);
 
-        // for(let i=0; i<data.steps.length; i++) {
-        //     const step = document.createElement("li");
-        //     step.classList = "my-1 text-center";
-        //     step.textContent = data.steps[i].step;
-        //     steplist.appendChild(step);
-        // }
+        for(let j=0; j<data[i].steps.length; j++) {
+            const step = document.createElement("li");
+            step.classList = "my-1 text-center";
+            step.textContent = data[i].steps[j].step;
+            steplist.appendChild(step);
+        }
     }
 }
 
@@ -314,13 +311,8 @@ const showData = async () => {
         headers: {"Content-type": "application/json"}
     }).then(async (res) => {
         const j = await res.json();
-        // console.log(j)
 
         if(j.data.exact){
-            // console.log(j);
-            // console.log(j.data);
-            // console.log(j.data.exact);
-            // console.log(j.data.similar);
             mainResults(j.data.exact);
             simResults(j.data.similar);
         } else {
